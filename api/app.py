@@ -5,9 +5,12 @@ import json
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Dict, Any
+from openai import OpenAI
 
 app = FastAPI(title="Nutrition Analysis API")
-
+debug_mode = True
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY")
+                
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
