@@ -91,7 +91,3 @@ async def analyze_nutrients(product_type: str, calories: float, sugar: float, sa
             nutrient_analysis_str += f"Salt is {abs(nutrient_analysis['salt']['percentageDiff'])}% below the ICMR-defined threshold."
 
     return {"analysis": nutrient_analysis_str}
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
