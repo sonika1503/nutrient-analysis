@@ -7,7 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Dict, Any
 from openai import OpenAI
 
-app = FastAPI(title="Nutrition Analysis API")
+app = FastAPI(title="Nutrition Analysis API
+
 debug_mode = True
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY")
                 
@@ -214,6 +215,7 @@ Nutrition Analysis :
 
     return completion.choices[0].message.content
 
+@app.get("/api/nutrient-analysis")
 async def nutrient_analysis(product_info_from_db):
     if product_info_from_db:
       brand_name = product_info_from_db.get("brandName", "")
@@ -226,10 +228,6 @@ async def nutrient_analysis(product_info_from_db):
       nutrient_analysis_rda = ""
       nutrient_analysis = ""
       nutritional_level = ""
-      processing_level = ""
-      all_ingredient_analysis = ""
-      claims_analysis = ""
-      refs = []
             
       if nutritional_information:
           product_type, calories, sugar, salt, serving_size = find_product_nutrients(product_info_from_db)
@@ -249,3 +247,5 @@ async def nutrient_analysis(product_info_from_db):
                 
           #Call GPT for nutrient analysis
           nutritional_level = await analyze_nutrition_icmr_rda(nutrient_analysis, nutrient_analysis_rda)
+
+          return nutritional_level
