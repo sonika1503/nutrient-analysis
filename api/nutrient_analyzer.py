@@ -1,20 +1,6 @@
 import os
 import json
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
 from typing import List, Dict, Any
-
-app = FastAPI(title="Nutrition Analysis API")
-
-# Add CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # Nutrient thresholds for solids and liquids
 thresholds = {
@@ -37,7 +23,6 @@ def calculate_percentage_difference(value: float, threshold: float) -> float:
     return ((value - threshold) / threshold) * 100
 
 # Function to analyze nutrients and calculate differences
-@app.get("/api/analyze-nutrients")
 async def analyze_nutrients(product_type: str, calories: float, sugar: float, salt: float, serving_size: float):
     threshold_data = thresholds.get(product_type)
     if not threshold_data:
