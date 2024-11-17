@@ -1,7 +1,7 @@
 {
   "version": 2,
   "functions": {
-    "api/data_extractor.py": {
+    "api/nutrient_analyzer.py": {
       "memory": 1024,
       "maxDuration": 60
     }
@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "api/data_extractor.py"
+      "dest": "api/nutrient_analyzer.py"
     }
   ]
 }
