@@ -232,7 +232,7 @@ async def nutrient_analysis(product_info_from_db):
       refs = []
             
       if nutritional_information:
-          product_type, calories, sugar, salt, serving_size = await find_product_nutrients(product_info_from_db)
+          product_type, calories, sugar, salt, serving_size = find_product_nutrients(product_info_from_db)
           if product_type is not None and serving_size is not None and serving_size > 0:                                                          
               nutrient_analysis = await analyze_nutrients(product_type, calories, sugar, salt, serving_size)                       
           else:                                                                                                              
